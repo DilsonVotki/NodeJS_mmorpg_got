@@ -129,6 +129,18 @@ JogosDAO.prototype.getAcoes = function (res, user) {
   this._connection(dados);
 };
 
+JogosDAO.prototype.revogarAcao = function (_id, res) {
+  var dados = {
+    operacao: "revogaAcao",
+    _id: _id,
+    collection: "acao",
+    callback: function (err, result) {
+      res.redirect("jogo?msg=D");
+    },
+  };
+  this._connection(dados);
+};
+
 module.exports = function () {
   return JogosDAO;
 };

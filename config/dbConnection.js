@@ -1,4 +1,5 @@
 var mongo = require("mongodb").MongoClient;
+var ObjectID = require("mongodb").ObjectID;
 var assert = require("assert");
 const url = "mongodb://localhost:27017";
 const dbName = "got";
@@ -44,6 +45,14 @@ function query(db, dados) {
       collection.updateOne(
         { "usuario.usuario": dados.usuario.usuario },
         { $inc: { moeda: dados.moeda } },
+        dados.callback
+      );
+      break;
+    case "revogaAcao":
+      collection.remove(
+        {
+          _id: ObjectID(dados._id),
+        },
         dados.callback
       );
       break;
